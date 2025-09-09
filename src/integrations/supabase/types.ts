@@ -14,7 +14,138 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      decorations: {
+        Row: {
+          category: string
+          created_at: string
+          description: string | null
+          id: string
+          image_urls: string[] | null
+          name: string
+          price_range: string | null
+          tags: string[] | null
+          updated_at: string
+        }
+        Insert: {
+          category: string
+          created_at?: string
+          description?: string | null
+          id?: string
+          image_urls?: string[] | null
+          name: string
+          price_range?: string | null
+          tags?: string[] | null
+          updated_at?: string
+        }
+        Update: {
+          category?: string
+          created_at?: string
+          description?: string | null
+          id?: string
+          image_urls?: string[] | null
+          name?: string
+          price_range?: string | null
+          tags?: string[] | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          created_at: string
+          full_name: string | null
+          id: string
+          role: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          full_name?: string | null
+          id?: string
+          role?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          full_name?: string | null
+          id?: string
+          role?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      vendor_capabilities: {
+        Row: {
+          created_at: string
+          decoration_id: string
+          id: string
+          vendor_id: string
+        }
+        Insert: {
+          created_at?: string
+          decoration_id: string
+          id?: string
+          vendor_id: string
+        }
+        Update: {
+          created_at?: string
+          decoration_id?: string
+          id?: string
+          vendor_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "vendor_capabilities_decoration_id_fkey"
+            columns: ["decoration_id"]
+            isOneToOne: false
+            referencedRelation: "decorations"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "vendor_capabilities_vendor_id_fkey"
+            columns: ["vendor_id"]
+            isOneToOne: false
+            referencedRelation: "vendors"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      vendors: {
+        Row: {
+          contact_number: string
+          created_at: string
+          email: string | null
+          id: string
+          is_active: boolean | null
+          name: string
+          service_areas: string[] | null
+          updated_at: string
+        }
+        Insert: {
+          contact_number: string
+          created_at?: string
+          email?: string | null
+          id?: string
+          is_active?: boolean | null
+          name: string
+          service_areas?: string[] | null
+          updated_at?: string
+        }
+        Update: {
+          contact_number?: string
+          created_at?: string
+          email?: string | null
+          id?: string
+          is_active?: boolean | null
+          name?: string
+          service_areas?: string[] | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
